@@ -4,6 +4,7 @@ const router = express.Router();
 const RegisterController = require('../controllers/RegisterController');
 const { RegisterValidation } = require('../validations');
 const validate = require('../middlewares/validate.js');
+const { verifyToken } = require('../middlewares/ProtectAPI.js');
 
 router.get('/', (req, res, next) => {
     res.status(200).json({
@@ -12,6 +13,7 @@ router.get('/', (req, res, next) => {
 });
 router.post(
     '/register',
+    verifyToken(),
     validate(RegisterValidation.register),
     RegisterController.signUp
 );
