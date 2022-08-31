@@ -1,9 +1,9 @@
 const httpStatus = require('http-status');
 const pick = require('../utils/pick.js');
 const ApiError = require('../utils/ApiError.js');
-const catchAsync = require('../utils/catchAsync');
+const catchAsync = require('../utils/CatchAsync');
 const { registerService } = require('../services');
-const responseBuilder = require('../utils/responseBuilder.js');
+const responseBuilder = require('../utils/ResponseBuilder.js');
 
 /**
  * Sign up
