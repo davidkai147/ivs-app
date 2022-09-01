@@ -12,7 +12,6 @@ const responseBuilder = require('../utils/ResponseBuilder.js');
  */
 const signUp = catchAsync(async (request, response) => {
     const register = await registerService.signUp(request.body);
-    console.log(register);
     responseBuilder(
         response,
         httpStatus.CREATED,
@@ -20,7 +19,36 @@ const signUp = catchAsync(async (request, response) => {
         'Signup successfully'
     );
 });
+/**
+ * Get all
+ * @return {Promise<Register>}
+ */
+const getAll = catchAsync(async (request, response) => {
+    const options = pick(request.query, ['name', 'limit', 'page']);
+    const list = await registerService.getAll(options);
+    console.log(list);
+    return responseBuilder(
+        response,
+        httpStatus.OK,
+        list,
+        'Get all successfully'
+    );
+});
+
+const getName = catchAsync(async (request, response) => {
+    const id = request.params.id;
+    const options = pick(request.body, ['name', 'email']);
+    const register = await registerService.getName(id, options);
+    return responseBuilder(
+        response,
+        httpStatus.OK,
+        register,
+        'Get data successfully'
+    );
+});
 
 module.exports = {
     signUp,
+    getAll,
+    getName,
 };

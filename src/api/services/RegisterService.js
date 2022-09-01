@@ -17,6 +17,34 @@ const signUp = async (signUpBody) => {
     }
 };
 
+const getAll = async (options) => {
+    var condition = options.name
+        ? { name: { [Op.like]: `%${options.name}%` } }
+        : null;
+    const { limit, offset } = getPagination(options.page, options.limit);
+    return Register.findAndCountAll({
+        attributes: ['name'],
+        where: condition,
+        limit,
+        offset,
+    })
+        .then((data) => {
+            return getPagingData(data, options.page, limit);
+        })
+        .catch((err) => {
+            throw new ApiError(
+                httpStatus.INTERNAL_SERVER_ERROR,
+                'Cannot get all names'
+            );
+        });
+};
+
+const getName = async (id, options) => {
+    return Register.findByPk(id, {
+        attributes: ['name', 'email'],
+    });
+};
+
 const isEmailTaken = async (email) => {
     return Register.findOne({
         where: {
@@ -25,7 +53,22 @@ const isEmailTaken = async (email) => {
     });
 };
 
+const getPagination = (page, size) => {
+    const limit = size ? +size : 20;
+    const offset = page ? page * limit : 0;
+    return { limit, offset };
+};
+
+const getPagingData = (data, page, limit) => {
+    const { count: totalItems, rows: register } = data;
+    const currentPage = page ? +page : 0;
+    const totalPages = Math.ceil(totalItems / limit);
+    return { totalItems, register, totalPages, currentPage };
+};
+
 module.exports = {
     signUp,
     isEmailTaken,
+    getAll,
+    getName,
 };

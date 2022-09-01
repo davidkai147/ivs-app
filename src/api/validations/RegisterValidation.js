@@ -6,6 +6,13 @@ const register = {
     }),
 };
 
+const getName = {
+    param: {
+        id: Joi.required(),
+    },
+};
+
 module.exports = {
     register,
+    getName,
 };

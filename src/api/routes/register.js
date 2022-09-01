@@ -17,5 +17,7 @@ router.post(
     validate(RegisterValidation.register),
     RegisterController.signUp
 );
+router.get('/get-all', verifyToken(), RegisterController.getAll);
+router.get('/get/:id', verifyToken(), RegisterController.getName);
 
 module.exports = router;
