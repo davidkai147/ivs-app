@@ -2,6 +2,20 @@
     box-sizing: border-box;
 }
 
+.bg-animate {
+    background: url(/bg.png) repeat-x 0 / 100% auto;
+    animation: ani 10s linear infinite;
+    height: 500px;
+}
+@keyframes ani {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 100vw 0;
+    }
+}
+
 input[type="text"],
 input[type="email"],
 select,
