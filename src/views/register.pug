@@ -1,0 +1,27 @@
+doctype html
+html
+   head
+      title Registration form
+      meta(name='viewport' content='width=device-width, initial-scale=1')
+      link(rel="stylesheet", href="form.css")
+   body
+      h2 Registration Form
+      .container
+         #notification.bar
+         form
+            .row
+               .col-25
+                  label(for='name') Name
+               .col-75
+                  input#name(type='text' name='name' placeholder='Your name..' required)
+            .row
+               .col-25
+                  label(for='email') Email
+               .col-75
+                  input#email(type='email' name='email' placeholder='Your email..' required)
+            .row
+               .col-25
+               .col-75
+                  input#submitBtn(type='submit' value='Submit')
+   script(type="text/javascript", src="axios.min.js")
+   script(type="text/javascript", src="form.js")

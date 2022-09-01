@@ -7,13 +7,10 @@ const validate = require('../middlewares/validate.js');
 const { verifyToken } = require('../middlewares/ProtectAPI.js');
 
 router.get('/', (req, res, next) => {
-    res.status(200).json({
-        message: 'OK',
-    });
+    res.render('register');
 });
 router.post(
     '/register',
-    verifyToken(),
     validate(RegisterValidation.register),
     RegisterController.signUp
 );

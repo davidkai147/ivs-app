@@ -7,6 +7,12 @@ const xss = require('xss-clean');
 const httpStatus = require('http-status');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
+
+// view
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
 
 //middleware
 app.use(helmet());
@@ -33,10 +39,9 @@ app.use((req, res, next) => {
 // error handler middleware
 app.use((error, req, res, next) => {
     res.status(error.status || httpStatus.INTERNAL_SERVER_ERROR).send({
-        error: {
-            status: error.status || httpStatus.INTERNAL_SERVER_ERROR,
-            message: error.message || 'Internal Server Error',
-        },
+        code: error.status || httpStatus.INTERNAL_SERVER_ERROR,
+        data: null,
+        message: error.message || 'Internal Server Error',
     });
 });
 
