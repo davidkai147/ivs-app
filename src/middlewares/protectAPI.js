@@ -1,6 +1,6 @@
-const responseBuilder = require('../utils/ResponseBuilder.js');
+const responseBuilder = require('../utils/responseBuilder.js');
 const httpStatus = require('http-status');
-const ApiError = require('../utils/ApiError');
+const ApiError = require('../utils/apiError');
 
 const verifyToken = () => (req, res, next) => {
     const token = req.headers['x-ivs-token'];

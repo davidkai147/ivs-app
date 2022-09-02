@@ -1,6 +1,6 @@
 const httpStatus = require('http-status');
 const pick = require('../utils/pick.js');
-const ApiError = require('../utils/ApiError.js');
+const ApiError = require('../utils/apiError.js');
 const catchAsync = require('../utils/CatchAsync.js');
 const { registerService } = require('../services');
 const responseBuilder = require('../utils/ResponseBuilder.js');

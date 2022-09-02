@@ -27,7 +27,7 @@ app.use(cors());
 app.options('*', cors());
 
 //router
-app.use(require('./api/routes'));
+app.use(require('./routes'));
 
 //Error Handling Middleware called
 app.use((req, res, next) => {

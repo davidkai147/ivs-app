@@ -1,7 +1,7 @@
 const httpStatus = require('http-status');
 const { Register } = require('../models/index.js');
 const sequelize = require('../database/connection.js');
-const ApiError = require('../utils/ApiError.js');
+const ApiError = require('../utils/apiError.js');
 
 const signUp = async (signUpBody) => {
     if (await isEmailTaken(signUpBody.email)) {
