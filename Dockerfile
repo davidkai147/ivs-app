@@ -1,15 +1,16 @@
 FROM node:13-alpine
 
+# Create app directory
+RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
-COPY package*.json ./
+COPY package*.json /usr/src/app/
 
 RUN npm install
 
-RUN npm install -g pm2
-
-COPY . .
+# Bundle app source
+COPY . /usr/src/app
 
 EXPOSE 3000
 
-CMD [ "node", "server.js" ]
+CMD [ "npm", "start" ]
